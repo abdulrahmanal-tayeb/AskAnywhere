@@ -25,6 +25,7 @@ export default function Sign() {
             }).then(response => response.json())
                 .then(data => {
                     if (!data.access_token) {
+                        setSubmitting(false);
                         return setError(true);
                     }
                     Cookies.set("access_token", data.access_token, { expires: 7 });
@@ -52,6 +53,7 @@ export default function Sign() {
             }).then(r => r.json())
                 .then(data => {
                     if (!data.token) {
+                        setSubmitting(false);
                         return setError(true);
                     }
                     Cookies.set("access_token", data.token, { expires: 7 });
@@ -76,7 +78,7 @@ export default function Sign() {
     return (
         <div style={{ width: "100%", height: "100%", overflow: "hidden" }} className="flexed-centered p-3 mt-5">
             <Slide in={true} direction="down" timeout={500}>
-                <div className="flexed-center col-12 mb-5" style={{textAlign: "center"}}>
+                <div className="flexed-center col-12 mb-5" style={{ textAlign: "center" }}>
                     <h1>Greetings There!</h1>
                 </div>
             </Slide>
@@ -171,9 +173,10 @@ export default function Sign() {
                                             {
                                                 label: "Confirm Password",
                                                 field: "password_confirmation",
+                                                type: "password"
                                             },
                                         ].map(({ field, label, type, fullWidth }, index) => (
-                                            <div key={index} className={`form-group mb-3 ${fullWidth ? "col-12" : ""}`} style={{flexGrow: 1}}>
+                                            <div key={index} className={`form-group mb-3 ${fullWidth ? "col-12" : ""}`} style={{ flexGrow: 1 }}>
                                                 <label htmlFor={field} className="form-label">{label}</label>
                                                 <Field type={type ?? "text"} className={`form-control ${fullWidth ? "col-12" : ""}`} id={field} name={field} style={{ width: "100%" }} />
                                                 <ErrorMessage name={field} component="div" className="text-danger" />

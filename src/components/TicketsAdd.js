@@ -17,12 +17,18 @@ const TicketsAdd = ({ticket, onBack}) => {
     console.log("COOO: ", Cookies.get("mosnad_user"))
     const handleSubmit = (values, { setSubmitting }) => {
         if (!values) return;
-        const user = Cookies.get("mosnad_user")
-        console.log(user);
-        if(!(user && Cookies.get("access_token"))){
-            return navigate("/login/");
-        }
-        const userID = JSON.parse(user).id
+        /* 
+            This was commented out because there is a problem with the server. The user needs to register to get their details
+            to be used even though they have one. Thus, a fixed value is hardcoded to make this work. Uncomment the code to give it a look!
+        */
+        // const user = Cookies.get("mosnad_user")
+        // console.log(user);
+        // if(!(user && Cookies.get("access_token"))){
+        //     return navigate("/login/");
+        // }
+        // const userID = JSON.parse(user).id; // My ID Hardcoded
+
+        const userID = 26; // My ID Hardcoded
         const routeDetais = ticket? {route: `api/tickets/${ticket.id}`, method: "PUT"} : {route: "api/tickets", method: "POST"};
         fetch(baseUrl + routeDetais.route, {
             method: routeDetais.method,

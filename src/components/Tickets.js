@@ -13,7 +13,7 @@ export default function Tickets() {
     const [tickets, setTickets] = useState(null);
     const navigate = useNavigate();
     const [fetching, setFetching] = useState(true);
-    const user = useMemo(() => JSON.parse(Cookies.get("mosnad_user")), []);
+    const user = useMemo(() => JSON.parse(Cookies.get("mosnad_user") ?? "[]"), []);
     useEffect(() => {
         if (tickets) return;
         fetch(baseUrl + "api/tickets", { headers: getHeaders() })
