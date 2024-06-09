@@ -1,0 +1,1 @@
+export const baseUrl = "https://tickets.dev-options.com/"
